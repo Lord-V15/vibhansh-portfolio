@@ -47,9 +47,9 @@ const VintagePortfolio: React.FC = () => {
   ];
 
   const projects = [
-    { name: 'Context Search', description: 'NER based intelligence' },
-    { name: 'OCR Notes Companion', description: 'iOS app for quick notes' },
-    { name: 'DGL', description: 'send letters to the future (dgl.novyte.ai)' },
+    { name: 'Context Search', description: 'Intelligent Search service based on NER, using data indexed in Elastic Search.' },
+    { name: 'OCR Notes Companion', description: 'iOS app for taking quick notes using the camera and saving them as PDF with a tensorflow OCR,' },
+    { name: 'Galaxy-Classification', description: 'deep learning nn to classify the images of galaxies into different types' },
   ];
 
   const workExperience = [
@@ -279,7 +279,7 @@ const VintagePortfolio: React.FC = () => {
                   <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-8 shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all`}>
                     <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                       <div>
-                        <div className="text-[#ff6b35] text-sm mb-2">[POSITION_{index + 1}]</div>
+                        <div className="text-[#ff6b35] text-sm mb-2">[POSITION_{workExperience.length - index}]</div>
                         <h3 className="text-2xl font-bold text-[#ffbe0b] mb-2">{job.title}</h3>
                         <p className="text-xl text-[#00ff41]">{job.company}</p>
                       </div>
