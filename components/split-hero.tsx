@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Terminal } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
+import { RevealWaveImage } from "@/components/ui/reveal-wave-image";
 
 interface SplitHeroProps {
   gridMode: 'inside-sphere' | 'global';
@@ -13,6 +14,8 @@ interface SplitHeroProps {
 }
 
 export default function SplitHero({ gridMode, onToggle }: SplitHeroProps) {
+  // Determine background opacity based on mode
+  const bgOpacity = gridMode === 'inside-sphere' ? 'bg-black/30' : 'bg-black/50';
   const [showCursor, setShowCursor] = useState(true);
 
   useEffect(() => {
@@ -34,7 +37,7 @@ export default function SplitHero({ gridMode, onToggle }: SplitHeroProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
-            className="border-4 border-[#00ff41] p-8 bg-black/80 backdrop-blur-sm shadow-[0_0_30px_rgba(0,255,65,0.3)]"
+            className={`border-4 border-[#00ff41] p-8 ${bgOpacity} backdrop-blur-sm shadow-[0_0_30px_rgba(0,255,65,0.3)]`}
           >
             {/* Terminal Header */}
             <div className="flex items-center gap-2 mb-6 pb-4 border-b-2 border-[#00ff41]">
@@ -133,15 +136,15 @@ export default function SplitHero({ gridMode, onToggle }: SplitHeroProps) {
 
       {/* Right Panel - Matrix Green Pixelated Effect */}
       <div
-        className="w-1/2 relative bg-transparent cursor-pointer transition-transform hover:scale-[1.02] group"
-        onClick={onToggle}
-        title="Click to toggle background mode"
+        className={`w-1/2 relative bg-transparent transition-transform group ${gridMode === 'inside-sphere' ? 'cursor-pointer hover:scale-[1.02]' : ''}`}
+        onClick={gridMode === 'inside-sphere' ? onToggle : undefined}
+        title={gridMode === 'inside-sphere' ? "Click to toggle background mode" : undefined}
       >
         {/* Only show Dithering sphere when in inside-sphere mode */}
         {gridMode === 'inside-sphere' && (
           <AnimatePresence mode="wait">
             <motion.div
-              key={gridMode}
+              key="sphere"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -165,11 +168,54 @@ export default function SplitHero({ gridMode, onToggle }: SplitHeroProps) {
           </AnimatePresence>
         )}
 
+        {/* Show Wormhole when in global mode (clicked state) */}
+        {gridMode === 'global' && (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key="wormhole"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              {/* Wormhole with translucent image and glow */}
+              <div
+                className="relative cursor-pointer rounded-full overflow-hidden"
+                style={{
+                  width: '80%',
+                  aspectRatio: '1/1',
+                  boxShadow: '0 0 30px rgba(0, 255, 65, 0.5), inset 0 0 30px rgba(0, 255, 65, 0.2)',
+                }}
+                onClick={onToggle}
+                title="Click to teleport back"
+              >
+                {/* Translucent wormhole image with wave effects */}
+                <div className="absolute inset-0 opacity-60">
+                  <RevealWaveImage
+                    src="/wormhole.jpg"
+                    waveSpeed={0.2}
+                    waveFrequency={0.7}
+                    waveAmplitude={0.5}
+                    revealRadius={0.5}
+                    revealSoftness={1}
+                    pixelSize={2}
+                    mouseRadius={0.4}
+                  />
+                </div>
+                {/* Inner glow effect */}
+                <div className="absolute inset-0 rounded-full bg-gradient-radial from-[#00ff41]/10 via-transparent to-transparent animate-pulse pointer-events-none" />
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        )}
+
         {/* Hover hint */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
           <div className="text-[#00ff41] text-sm font-mono text-center">
-            {/* [CLICK_TO_TOGGLE_MODE]  */}
-            [CLICK_TO_TOGGLE_MODE]
+            {gridMode === 'inside-sphere'
+              ? '[Click for r_s = 2GM/c²]'
+              : '[Click to teleport back]'}
           </div>
         </div>
       </div>

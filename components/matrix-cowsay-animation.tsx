@@ -13,6 +13,7 @@ interface FlyingCharacter {
   speed: number;
   character: string;
   opacity: number;
+  direction: 'top-left' | 'bottom-left' | 'left';
 }
 
 const COWSAY_CHARACTERS = [
@@ -94,7 +95,7 @@ const COWSAY_CHARACTERS = [
 
 export default function MatrixCowsayAnimation({ className = '' }: MatrixCowsayAnimationProps) {
   const canvasRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | undefined>(undefined);
   const charactersRef = useRef<FlyingCharacter[]>([]);
   const nextIdRef = useRef(0);
   const lastSpawnTimeRef = useRef(0);
@@ -106,16 +107,32 @@ export default function MatrixCowsayAnimation({ className = '' }: MatrixCowsayAn
     const spawnInterval = 400; // Spawn every 400ms - much more frequent!
     const diagonalSpeed = 0.3; // Slower speed for readability
 
+    // Sphere center is at 75% x, 50% y with radius of 17.5%
+    const sphereCenterX = 75;
+    const sphereCenterY = 50;
+    const sphereRadius = 17.5;
+
     const createCharacter = (): FlyingCharacter => {
       const randomChar = COWSAY_CHARACTERS[Math.floor(Math.random() * COWSAY_CHARACTERS.length)];
 
+      // Spawn from random position inside the sphere
+      const angle = Math.random() * Math.PI * 2;
+      const distance = Math.random() * sphereRadius;
+      const startX = sphereCenterX + Math.cos(angle) * distance;
+      const startY = sphereCenterY + Math.sin(angle) * distance;
+
+      // Randomly choose direction: top-left, bottom-left, or left
+      const rand = Math.random();
+      const direction = rand < 0.33 ? 'top-left' : rand < 0.67 ? 'bottom-left' : 'left';
+
       return {
         id: nextIdRef.current++,
-        x: Math.random() * 40, // Start from left 40% of screen (wider spawn area)
-        y: 100 + Math.random() * 30, // Start from bottom with more variation
+        x: startX,
+        y: startY,
         speed: diagonalSpeed + Math.random() * 0.15,
         character: randomChar,
         opacity: 0.15 + Math.random() * 0.4, // Random opacity between 0.15 and 0.55
+        direction,
       };
     };
 
@@ -130,13 +147,26 @@ export default function MatrixCowsayAnimation({ className = '' }: MatrixCowsayAn
         lastSpawnTimeRef.current = timestamp;
       }
 
-      // Update character positions
+      // Update character positions - exact 45-degree angle (or straight left)
       charactersRef.current = charactersRef.current.filter((char) => {
-        char.x += char.speed;
-        char.y -= char.speed;
-
-        // Remove if off screen (top or right)
-        return char.x < 110 && char.y > -20;
+        if (char.direction === 'top-left') {
+          // Move to top-left
+          char.x -= char.speed;
+          char.y -= char.speed;
+          // Remove if off screen (top or left)
+          return char.x > -10 && char.y > -20;
+        } else if (char.direction === 'bottom-left') {
+          // Move to bottom-left
+          char.x -= char.speed;
+          char.y += char.speed;
+          // Remove if off screen (bottom or left)
+          return char.x > -10 && char.y < 110;
+        } else {
+          // Move straight left
+          char.x -= char.speed;
+          // Remove if off screen (left)
+          return char.x > -10;
+        }
       });
 
       // Render characters

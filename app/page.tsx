@@ -6,6 +6,7 @@ import SplitHero from '@/components/split-hero';
 import ThermodynamicGrid from '@/components/ui/interactive-thermodynamic-grid';
 import DitheringShader from '@/components/ui/dithering-shader';
 import MatrixCowsayAnimation from '@/components/matrix-cowsay-animation';
+import { RevealWaveImage } from '@/components/ui/reveal-wave-image';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Briefcase, GraduationCap, Award, Code, MapPin, Calendar, Cpu } from 'lucide-react';
@@ -15,6 +16,9 @@ import { Mail } from 'lucide-react';
 const VintagePortfolio: React.FC = () => {
   const [gridMode, setGridMode] = useState<'inside-sphere' | 'global'>('inside-sphere');
   const [dimensions, setDimensions] = useState({ width: 1920, height: 1080 });
+
+  // Dynamic opacity based on grid mode
+  const cardOpacity = gridMode === 'inside-sphere' ? 'bg-black/30' : 'bg-black/50';
 
   React.useEffect(() => {
     setDimensions({ width: window.innerWidth, height: window.innerHeight });
@@ -34,7 +38,7 @@ const VintagePortfolio: React.FC = () => {
   const skills = [
     'FastAPI', 'Celery', 'Git', 'Redis', 'PyTest', 'Github Actions', 'Pandas',
     'MongoDB', 'NumPy', 'PostgreSQL', 'spaCy', 'Scikit-learn', 'Tensorflow',
-    'Jupyter', 'Docker', 'Websockets', 'ElasticSearch', 'GCP', 'AWS', 'DigitalOcean'
+    'Jupyter', 'Docker', 'Websockets', 'ElasticSearch', 'Azure', 'GCP', 'AWS', 'AutoScaling'
   ];
 
   const languages = [
@@ -164,7 +168,7 @@ const VintagePortfolio: React.FC = () => {
               </div>
             </motion.div>
 
-            <Card className="bg-black/80 backdrop-blur-sm border-4 border-[#00ff41] p-8 shadow-[0_0_30px_rgba(0,255,65,0.3)] pointer-events-none">
+            <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] p-8 shadow-[0_0_30px_rgba(0,255,65,0.3)] pointer-events-none`}>
               <div className="mb-8">
                 <div className="text-[#ff6b35] mb-4">[TECH_STACK]:</div>
                 <div className="flex flex-wrap gap-3">
@@ -236,7 +240,7 @@ const VintagePortfolio: React.FC = () => {
                   transition={{ delay: index * 0.15 }}
                   whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0,255,65,0.5)" }}
                 >
-                  <Card className="bg-black/80 backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all">
+                  <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all`}>
                     <div className="text-[#ff6b35] text-sm mb-2">[PROJECT_{index + 1}]</div>
                     <h3 className="text-xl font-bold text-[#ffbe0b] mb-3">{project.name}</h3>
                     <p className="text-[#00ff41]/80">&gt; {project.description}</p>
@@ -272,7 +276,7 @@ const VintagePortfolio: React.FC = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.15 }}
                 >
-                  <Card className="bg-black/80 backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-8 shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all">
+                  <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-8 shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all`}>
                     <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                       <div>
                         <div className="text-[#ff6b35] text-sm mb-2">[POSITION_{index + 1}]</div>
@@ -346,7 +350,7 @@ const VintagePortfolio: React.FC = () => {
                   transition={{ delay: index * 0.15 }}
                   whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(0,255,65,0.5)" }}
                 >
-                  <Card className="bg-black/80 backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all">
+                  <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all`}>
                     <div className="text-[#ff6b35] text-sm mb-2">[DEGREE_{index + 1}]</div>
                     <h3 className="text-xl font-bold text-[#ffbe0b] mb-2">{edu.degree}</h3>
                     <p className="text-lg text-[#00ff41] mb-2">{edu.institution}</p>
@@ -375,7 +379,7 @@ const VintagePortfolio: React.FC = () => {
               </div>
             </motion.div>
 
-            <Card className="bg-black/80 backdrop-blur-sm border-4 border-[#00ff41] p-8 shadow-[0_0_20px_rgba(0,255,65,0.2)]">
+            <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] p-8 shadow-[0_0_20px_rgba(0,255,65,0.2)]`}>
               <div className="text-[#ff6b35] mb-4">[ACHIEVEMENTS_UNLOCKED]:</div>
               <ul className="space-y-4">
                 {certificates.map((cert, index) => (
@@ -419,7 +423,7 @@ const VintagePortfolio: React.FC = () => {
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(0,255,65,0.5)" }}
               >
-                <Card className="bg-black/80 backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all">
+                <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all`}>
                   <div className="text-[#ff6b35] text-sm mb-2">[CONTRIBUTION_1]</div>
                   <h3 className="text-xl font-bold text-[#ffbe0b] mb-3">spaCy, PyTextRank</h3>
                   <p className="text-[#00ff41]/70 text-sm mb-2">[01/2021 - 02/2021]</p>
@@ -436,7 +440,7 @@ const VintagePortfolio: React.FC = () => {
                 transition={{ delay: 0.15 }}
                 whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(0,255,65,0.5)" }}
               >
-                <Card className="bg-black/80 backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all">
+                <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all`}>
                   <div className="text-[#ff6b35] text-sm mb-2">[CONTRIBUTION_2]</div>
                   <h3 className="text-xl font-bold text-[#ffbe0b] mb-3">FastAPI</h3>
                   <p className="text-[#00ff41]/80">
@@ -459,7 +463,7 @@ const VintagePortfolio: React.FC = () => {
             >
               <div className="mb-6">
                 <div className="text-[#ff6b35] text-sm mb-2">[SYSTEM_MESSAGE]:</div>
-                <p className="text-xl text-[#00ff41] mb-4">Let&apos;s build something amazing together!</p>
+                <p className="text-xl text-[#00ff41] mb-4">I must not fear. Fear is the mind-killer</p>
               </div>
 
               <div className="flex justify-center gap-6 mb-6">
