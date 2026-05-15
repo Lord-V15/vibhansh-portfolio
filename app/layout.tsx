@@ -21,6 +21,28 @@ export const metadata: Metadata = {
       { url: '/icon.jpg' },
     ],
   },
+  openGraph: {
+    title: "[VIBHANSH'S INFORMATION PARADOX]",
+    description: "[WELCOME TO LORD'S PORTFOLIO]",
+    url: 'https://vibhansh.vercel.app',
+    siteName: "[VIBHANSH'S INFORMATION PARADOX]",
+    images: [
+      {
+        url: '/icon.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Wormhole Portal - Vibhansh Gupta Portfolio',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "[VIBHANSH'S INFORMATION PARADOX]",
+    description: "[WELCOME TO LORD'S PORTFOLIO]",
+    images: ['/icon.jpg'],
+  },
 };
 
 export default function RootLayout({
