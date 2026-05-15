@@ -207,8 +207,8 @@ export default function SplitHero({ gridMode, onToggle }: SplitHeroProps) {
           </AnimatePresence>
         )}
 
-        {/* Click hint - always visible, aligned with terminal box bottom */}
-        <div className="absolute bottom-[25%] md:bottom-[20%] left-1/2 -translate-x-1/2 transition-opacity pointer-events-none">
+        {/* Click hint - always visible */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity pointer-events-none">
           <div className="text-[#00ff41] text-sm font-mono text-center animate-pulse">
             {gridMode === 'inside-sphere'
               ? '[Click for r_s = 2GM/c²]'
