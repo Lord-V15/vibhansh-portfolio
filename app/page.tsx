@@ -13,6 +13,7 @@ import { Badge } from '@/components/ui/badge';
 import { Briefcase, GraduationCap, Award, Code, MapPin, Calendar, Cpu } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { Mail } from 'lucide-react';
+import MobileLockScreen from '@/components/mobile-lock-screen';
 
 const VintagePortfolio: React.FC = () => {
   const [gridMode, setGridMode] = useState<'inside-sphere' | 'global'>('inside-sphere');
@@ -119,18 +120,23 @@ const VintagePortfolio: React.FC = () => {
 
   return (
     <>
-      {/* Grey background - fixed, only in global mode */}
-      {gridMode === 'global' && (
-        <div className="fixed inset-0 z-[-1] bg-[#0a0a0a]" />
-      )}
+      {/* Mobile Lock Screen - visible only on small screens */}
+      <MobileLockScreen />
 
-      {/* Black background - fixed, only in inside-sphere mode */}
-      {gridMode === 'inside-sphere' && (
-        <>
-          <div className="fixed inset-0 z-[-1] bg-black" />
-          <MatrixCowsayAnimation />
-        </>
-      )}
+      {/* Desktop Portfolio - hidden on mobile */}
+      <div className="hidden md:block">
+        {/* Grey background - fixed, only in global mode */}
+        {gridMode === 'global' && (
+          <div className="fixed inset-0 z-[-1] bg-[#0a0a0a]" />
+        )}
+
+        {/* Black background - fixed, only in inside-sphere mode */}
+        {gridMode === 'inside-sphere' && (
+          <>
+            <div className="fixed inset-0 z-[-1] bg-black" />
+            <MatrixCowsayAnimation />
+          </>
+        )}
 
       {/* Global Thermodynamic Grid - covers entire viewport */}
       <ThermodynamicGrid
@@ -403,82 +409,6 @@ const VintagePortfolio: React.FC = () => {
           </div>
         </section>
 
-        {/* Education Section */}
-        <section className="py-20 px-4">
-          <div className="max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="mb-8"
-            >
-              <div className="flex items-center gap-2 text-2xl mb-2">
-                <GraduationCap className="w-8 h-8 text-[#ff6b35]" />
-                <span className="text-[#ff6b35]">&gt;</span>
-                <span className="text-[#ffbe0b]">./education --query</span>
-              </div>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {education.map((edu, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.15 }}
-                  whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(0,255,65,0.5)" }}
-                >
-                  <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all`}>
-                    <div className="text-[#ff6b35] text-sm mb-2">[DEGREE_{index + 1}]</div>
-                    <h3 className="text-xl font-bold text-[#ffbe0b] mb-2">{edu.degree}</h3>
-                    <p className="text-lg text-[#00ff41] mb-2">{edu.institution}</p>
-                    <p className="text-[#00ff41]/70 mb-2">[{edu.period}]</p>
-                    <p className="text-[#00ff41]/80 italic border-l-4 border-[#ff6b35] pl-3">{edu.note}</p>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Certificates Section */}
-        <section className="py-20 px-4">
-          <div className="max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="mb-8"
-            >
-              <div className="flex items-center gap-2 text-2xl mb-2">
-                <Award className="w-8 h-8 text-[#ff6b35]" />
-                <span className="text-[#ff6b35]">&gt;</span>
-                <span className="text-[#ffbe0b]">cat certificates.txt</span>
-              </div>
-            </motion.div>
-
-            <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] p-8 shadow-[0_0_20px_rgba(0,255,65,0.2)]`}>
-              <div className="text-[#ff6b35] mb-4">[ACHIEVEMENTS_UNLOCKED]:</div>
-              <ul className="space-y-4">
-                {certificates.map((cert, index) => (
-                  <motion.li
-                    key={index}
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="text-[#00ff41] flex items-start text-lg"
-                  >
-                    <span className="text-[#ff6b35] mr-3 text-xl">✓</span>
-                    {cert}
-                  </motion.li>
-                ))}
-              </ul>
-            </Card>
-          </div>
-        </section>
-
         {/* Open Source Section */}
         <section className="py-20 px-4">
           <div className="max-w-5xl mx-auto">
@@ -528,6 +458,82 @@ const VintagePortfolio: React.FC = () => {
                 </Card>
               </motion.div>
             </div>
+          </div>
+        </section>
+
+        {/* Education Section */}
+        <section className="py-20 px-4">
+          <div className="max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="mb-8"
+            >
+              <div className="flex items-center gap-2 text-2xl mb-2">
+                <GraduationCap className="w-8 h-8 text-[#ff6b35]" />
+                <span className="text-[#ff6b35]">&gt;</span>
+                <span className="text-[#ffbe0b]">./education --query</span>
+              </div>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {education.map((edu, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15 }}
+                  whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(0,255,65,0.5)" }}
+                >
+                  <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.4)] transition-all`}>
+                    <div className="text-[#ff6b35] text-sm mb-2">[DEGREE_{index + 1}]</div>
+                    <h3 className="text-xl font-bold text-[#ffbe0b] mb-2">{edu.degree}</h3>
+                    <p className="text-lg text-[#00ff41] mb-2">{edu.institution}</p>
+                    <p className="text-[#00ff41]/70 mb-2">[{edu.period}]</p>
+                    <p className="text-[#00ff41]/80 italic border-l-4 border-[#ff6b35] pl-3">{edu.note}</p>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Certificates Section */}
+        <section className="py-20 px-4">
+          <div className="max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="mb-8"
+            >
+              <div className="flex items-center gap-2 text-2xl mb-2">
+                <Award className="w-8 h-8 text-[#ff6b35]" />
+                <span className="text-[#ff6b35]">&gt;</span>
+                <span className="text-[#ffbe0b]">cat certificates.txt</span>
+              </div>
+            </motion.div>
+
+            <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] p-8 shadow-[0_0_20px_rgba(0,255,65,0.2)]`}>
+              <div className="text-[#ff6b35] mb-4">[ACHIEVEMENTS_UNLOCKED]:</div>
+              <ul className="space-y-4">
+                {certificates.map((cert, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="text-[#00ff41] flex items-start text-lg"
+                  >
+                    <span className="text-[#ff6b35] mr-3 text-xl">✓</span>
+                    {cert}
+                  </motion.li>
+                ))}
+              </ul>
+            </Card>
           </div>
         </section>
 
@@ -581,6 +587,7 @@ const VintagePortfolio: React.FC = () => {
           </div>
         </footer>
         </div>
+      </div>
       </div>
     </>
   );
