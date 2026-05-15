@@ -230,7 +230,7 @@ const VintagePortfolio: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.5 }}
               className="mb-8"
             >
               <div className="flex items-center gap-2 text-2xl mb-2">
@@ -241,37 +241,82 @@ const VintagePortfolio: React.FC = () => {
             </motion.div>
 
             <div className="grid md:grid-cols-2 gap-6">
-              <motion.div
+              <motion.a
+                href="https://github.com/DerwenAI/pytextrank"
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.3 }}
                 whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(0,255,65,0.5)" }}
+                className="block"
               >
-                <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all`}>
-                  <div className="text-[#ff6b35] text-sm mb-2">[CONTRIBUTION_1]</div>
-                  <h3 className="text-xl font-bold text-[#ffbe0b] mb-3">spaCy, PyTextRank</h3>
-                  <p className="text-[#00ff41]/70 text-sm mb-2">[01/2021 - 02/2021]</p>
-                  <p className="text-[#00ff41]/80">
-                    Helped identify issues with existing code and fixed the pipeline compatibility for spaCy v3 release
-                  </p>
+                <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all cursor-pointer pointer-events-auto`}>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, amount: 0.8 }}
+                    className="text-[#ff6b35] text-sm mb-2"
+                  >
+                    <TypingText text="[CONTRIBUTION_1]" delay={0} speed={50} />
+                  </motion.div>
+                  <motion.h3
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, amount: 0.8 }}
+                    className="text-xl font-bold text-[#ffbe0b] mb-3"
+                  >
+                    <TypingText text="spaCy, PyTextRank" delay={300} speed={40} />
+                  </motion.h3>
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, amount: 0.8 }}
+                    className="text-[#00ff41]/80"
+                  >
+                    <TypingText text="Helped identify issues with existing code and fixed the pipeline compatibility for spaCy v3 release" delay={800} speed={25} />
+                  </motion.p>
                 </Card>
-              </motion.div>
+              </motion.a>
 
-              <motion.div
+              <motion.a
+                href="https://github.com/FastAPI/FastAPI"
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.3 }}
                 transition={{ delay: 0.15 }}
                 whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(0,255,65,0.5)" }}
+                className="block"
               >
-                <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all`}>
-                  <div className="text-[#ff6b35] text-sm mb-2">[CONTRIBUTION_2]</div>
-                  <h3 className="text-xl font-bold text-[#ffbe0b] mb-3">FastAPI</h3>
-                  <p className="text-[#00ff41]/80">
-                    Contributed in fixing a swagger docs bug. Community member for contributing to open issues
-                  </p>
+                <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all cursor-pointer pointer-events-auto`}>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, amount: 0.8 }}
+                    className="text-[#ff6b35] text-sm mb-2"
+                  >
+                    <TypingText text="[CONTRIBUTION_2]" delay={0} speed={50} />
+                  </motion.div>
+                  <motion.h3
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, amount: 0.8 }}
+                    className="text-xl font-bold text-[#ffbe0b] mb-3"
+                  >
+                    <TypingText text="FastAPI" delay={300} speed={40} />
+                  </motion.h3>
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, amount: 0.8 }}
+                    className="text-[#00ff41]/80"
+                  >
+                    <TypingText text="Contributed in fixing a swagger docs bug. Community member for contributing to open issues" delay={600} speed={25} />
+                  </motion.p>
                 </Card>
-              </motion.div>
+              </motion.a>
             </div>
           </div>
         </section>
@@ -283,7 +328,7 @@ const VintagePortfolio: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.5 }}
               className="mb-8"
             >
               <div className="flex items-center gap-2 text-2xl mb-2">
@@ -299,7 +344,7 @@ const VintagePortfolio: React.FC = () => {
                   key={index}
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, amount: 0.2 }}
                   transition={{ delay: index * 0.15 }}
                 >
                   <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-8 shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all`}>
@@ -308,7 +353,7 @@ const VintagePortfolio: React.FC = () => {
                         <motion.div
                           initial={{ opacity: 0 }}
                           whileInView={{ opacity: 1 }}
-                          viewport={{ once: true }}
+                          viewport={{ once: true, amount: 0.8 }}
                           className="text-[#ff6b35] text-sm mb-2"
                         >
                           <TypingText text={`[POSITION_${workExperience.length - index}]`} delay={0} speed={50} />
@@ -316,7 +361,7 @@ const VintagePortfolio: React.FC = () => {
                         <motion.h3
                           initial={{ opacity: 0 }}
                           whileInView={{ opacity: 1 }}
-                          viewport={{ once: true }}
+                          viewport={{ once: true, amount: 0.8 }}
                           className="text-2xl font-bold text-[#ffbe0b] mb-2"
                         >
                           <TypingText text={job.title} delay={500} speed={40} />
@@ -324,7 +369,7 @@ const VintagePortfolio: React.FC = () => {
                         <motion.p
                           initial={{ opacity: 0 }}
                           whileInView={{ opacity: 1 }}
-                          viewport={{ once: true }}
+                          viewport={{ once: true, amount: 0.8 }}
                           className="text-xl text-[#00ff41]"
                         >
                           <a
@@ -341,7 +386,7 @@ const VintagePortfolio: React.FC = () => {
                         <motion.div
                           initial={{ opacity: 0 }}
                           whileInView={{ opacity: 1 }}
-                          viewport={{ once: true }}
+                          viewport={{ once: true, amount: 0.8 }}
                           className="flex items-center gap-2 mb-1"
                         >
                           <Calendar className="w-4 h-4 text-[#ff6b35]" />
@@ -350,7 +395,7 @@ const VintagePortfolio: React.FC = () => {
                         <motion.div
                           initial={{ opacity: 0 }}
                           whileInView={{ opacity: 1 }}
-                          viewport={{ once: true }}
+                          viewport={{ once: true, amount: 0.8 }}
                           className="flex items-center gap-2"
                         >
                           <MapPin className="w-4 h-4 text-[#ff6b35]" />
@@ -364,7 +409,7 @@ const VintagePortfolio: React.FC = () => {
                         <motion.div
                           initial={{ opacity: 0 }}
                           whileInView={{ opacity: 1 }}
-                          viewport={{ once: true }}
+                          viewport={{ once: true, amount: 0.8 }}
                         >
                           <TypingText text={job.description} delay={2500} speed={25} />
                         </motion.div>
@@ -374,7 +419,7 @@ const VintagePortfolio: React.FC = () => {
                     <motion.div
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: true, amount: 0.8 }}
                       className="text-[#ff6b35] text-sm mb-2"
                     >
                       <TypingText text="[ACHIEVEMENTS]:" delay={3500} speed={50} />
@@ -385,7 +430,7 @@ const VintagePortfolio: React.FC = () => {
                           key={i}
                           initial={{ opacity: 0 }}
                           whileInView={{ opacity: 1 }}
-                          viewport={{ once: true }}
+                          viewport={{ once: true, amount: 0.8 }}
                           className="text-[#00ff41]/80 flex items-start"
                         >
                           <span className="text-[#ff6b35] mr-2 mt-1">▸</span>
@@ -407,7 +452,7 @@ const VintagePortfolio: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.5 }}
               className="mb-8"
             >
               <div className="flex items-center gap-2 text-2xl mb-2">
@@ -423,16 +468,51 @@ const VintagePortfolio: React.FC = () => {
                   key={index}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, amount: 0.3 }}
                   transition={{ delay: index * 0.15 }}
                   whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(0,255,65,0.5)" }}
                 >
                   <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.4)] transition-all`}>
-                    <div className="text-[#ff6b35] text-sm mb-2">[DEGREE_{index + 1}]</div>
-                    <h3 className="text-xl font-bold text-[#ffbe0b] mb-2">{edu.degree}</h3>
-                    <p className="text-lg text-[#00ff41] mb-2">{edu.institution}</p>
-                    <p className="text-[#00ff41]/70 mb-2">[{edu.period}]</p>
-                    <p className="text-[#00ff41]/80 italic border-l-4 border-[#ff6b35] pl-3">{edu.note}</p>
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true, amount: 0.8 }}
+                      className="text-[#ff6b35] text-sm mb-2"
+                    >
+                      <TypingText text={`[DEGREE_${index + 1}]`} delay={0} speed={50} />
+                    </motion.div>
+                    <motion.h3
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true, amount: 0.8 }}
+                      className="text-xl font-bold text-[#ffbe0b] mb-2"
+                    >
+                      <TypingText text={edu.degree} delay={300} speed={35} />
+                    </motion.h3>
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true, amount: 0.8 }}
+                      className="text-lg text-[#00ff41] mb-2"
+                    >
+                      <TypingText text={edu.institution} delay={800} speed={30} />
+                    </motion.p>
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true, amount: 0.8 }}
+                      className="text-[#00ff41]/70 mb-2"
+                    >
+                      <TypingText text={`[${edu.period}]`} delay={1200} speed={40} />
+                    </motion.p>
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true, amount: 0.8 }}
+                      className="text-[#00ff41]/80 italic border-l-4 border-[#ff6b35] pl-3"
+                    >
+                      <TypingText text={edu.note} delay={1600} speed={25} />
+                    </motion.p>
                   </Card>
                 </motion.div>
               ))}
@@ -447,7 +527,7 @@ const VintagePortfolio: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.5 }}
               className="mb-8"
             >
               <div className="flex items-center gap-2 text-2xl mb-2">
@@ -466,7 +546,7 @@ const VintagePortfolio: React.FC = () => {
                   rel="noopener noreferrer"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, amount: 0.3 }}
                   transition={{ delay: index * 0.15 }}
                   whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0,255,65,0.5)" }}
                   className="block"
@@ -475,26 +555,26 @@ const VintagePortfolio: React.FC = () => {
                     <motion.div
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: true, amount: 0.8 }}
                       className="text-[#ff6b35] text-sm mb-2"
                     >
-                      <TypingText text={`[PROJECT_${index + 1}]`} delay={index * 500} speed={50} />
+                      <TypingText text={`[PROJECT_${index + 1}]`} delay={0} speed={50} />
                     </motion.div>
                     <motion.h3
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: true, amount: 0.8 }}
                       className="text-xl font-bold text-[#ffbe0b] mb-3"
                     >
-                      <TypingText text={project.name} delay={index * 500 + 300} speed={40} />
+                      <TypingText text={project.name} delay={300} speed={40} />
                     </motion.h3>
                     <motion.p
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: true, amount: 0.8 }}
                       className="text-[#00ff41]/80"
                     >
-                      <TypingText text={`> ${project.description}`} delay={index * 500 + 600} speed={25} />
+                      <TypingText text={`> ${project.description}`} delay={600} speed={25} />
                     </motion.p>
                   </Card>
                 </motion.a>
