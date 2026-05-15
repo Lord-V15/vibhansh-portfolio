@@ -69,7 +69,7 @@ export default function SplitHero({ gridMode, onToggle }: SplitHeroProps) {
                 <span>cat tagline.txt</span>
               </div>
               <div className="pl-6 text-xl text-[#ffbe0b] font-bold">
-                Make Products Scalable Again
+                I love bringing AI ideas into production.
                 {showCursor && <span className="animate-pulse">_</span>}
               </div>
 
@@ -79,9 +79,6 @@ export default function SplitHero({ gridMode, onToggle }: SplitHeroProps) {
               </div>
               <div className="pl-6 text-base text-[#00ff41]/80">
                 Tech enthusiast, Python lover and Space aficionado.
-              </div>
-              <div className="pl-6 text-base text-[#00ff41]/80">
-                I love bringing AI ideas into production.
               </div>
               <div className="flex items-center gap-2 mt-8">
                 <span className="text-[#ff6b35]">&gt;</span>
