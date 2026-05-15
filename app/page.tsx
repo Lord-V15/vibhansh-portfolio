@@ -224,7 +224,7 @@ const VintagePortfolio: React.FC = () => {
           </div>
         </section>
 
-        {/* Projects Section */}
+        {/* Open Source Section */}
         <section className="py-20 px-4">
           <div className="max-w-5xl mx-auto">
             <motion.div
@@ -234,57 +234,48 @@ const VintagePortfolio: React.FC = () => {
               className="mb-8"
             >
               <div className="flex items-center gap-2 text-2xl mb-2">
-                <Cpu className="w-8 h-8 text-[#ff6b35]" />
+                <Code className="w-8 h-8 text-[#ff6b35]" />
                 <span className="text-[#ff6b35]">&gt;</span>
-                <span className="text-[#ffbe0b]">cd /projects && ls</span>
+                <span className="text-[#ffbe0b]">git log --open-source</span>
               </div>
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              {projects.map((project, index) => (
-                <motion.a
-                  key={project.name}
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.15 }}
-                  whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0,255,65,0.5)" }}
-                  className="block"
-                >
-                  <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all cursor-pointer pointer-events-auto`}>
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      className="text-[#ff6b35] text-sm mb-2"
-                    >
-                      <TypingText text={`[PROJECT_${index + 1}]`} delay={index * 500} speed={50} />
-                    </motion.div>
-                    <motion.h3
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      className="text-xl font-bold text-[#ffbe0b] mb-3"
-                    >
-                      <TypingText text={project.name} delay={index * 500 + 300} speed={40} />
-                    </motion.h3>
-                    <motion.p
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      className="text-[#00ff41]/80"
-                    >
-                      <TypingText text={`> ${project.description}`} delay={index * 500 + 600} speed={25} />
-                    </motion.p>
-                  </Card>
-                </motion.a>
-              ))}
+            <div className="grid md:grid-cols-2 gap-6">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(0,255,65,0.5)" }}
+              >
+                <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all`}>
+                  <div className="text-[#ff6b35] text-sm mb-2">[CONTRIBUTION_1]</div>
+                  <h3 className="text-xl font-bold text-[#ffbe0b] mb-3">spaCy, PyTextRank</h3>
+                  <p className="text-[#00ff41]/70 text-sm mb-2">[01/2021 - 02/2021]</p>
+                  <p className="text-[#00ff41]/80">
+                    Helped identify issues with existing code and fixed the pipeline compatibility for spaCy v3 release
+                  </p>
+                </Card>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.15 }}
+                whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(0,255,65,0.5)" }}
+              >
+                <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all`}>
+                  <div className="text-[#ff6b35] text-sm mb-2">[CONTRIBUTION_2]</div>
+                  <h3 className="text-xl font-bold text-[#ffbe0b] mb-3">FastAPI</h3>
+                  <p className="text-[#00ff41]/80">
+                    Contributed in fixing a swagger docs bug. Community member for contributing to open issues
+                  </p>
+                </Card>
+              </motion.div>
             </div>
           </div>
         </section>
+
 
         {/* Work Experience Section */}
         <section className="py-20 px-4">
@@ -409,57 +400,6 @@ const VintagePortfolio: React.FC = () => {
           </div>
         </section>
 
-        {/* Open Source Section */}
-        <section className="py-20 px-4">
-          <div className="max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="mb-8"
-            >
-              <div className="flex items-center gap-2 text-2xl mb-2">
-                <Code className="w-8 h-8 text-[#ff6b35]" />
-                <span className="text-[#ff6b35]">&gt;</span>
-                <span className="text-[#ffbe0b]">git log --open-source</span>
-              </div>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(0,255,65,0.5)" }}
-              >
-                <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all`}>
-                  <div className="text-[#ff6b35] text-sm mb-2">[CONTRIBUTION_1]</div>
-                  <h3 className="text-xl font-bold text-[#ffbe0b] mb-3">spaCy, PyTextRank</h3>
-                  <p className="text-[#00ff41]/70 text-sm mb-2">[01/2021 - 02/2021]</p>
-                  <p className="text-[#00ff41]/80">
-                    Helped identify issues with existing code and fixed the pipeline compatibility for spaCy v3 release
-                  </p>
-                </Card>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.15 }}
-                whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(0,255,65,0.5)" }}
-              >
-                <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all`}>
-                  <div className="text-[#ff6b35] text-sm mb-2">[CONTRIBUTION_2]</div>
-                  <h3 className="text-xl font-bold text-[#ffbe0b] mb-3">FastAPI</h3>
-                  <p className="text-[#00ff41]/80">
-                    Contributed in fixing a swagger docs bug. Community member for contributing to open issues
-                  </p>
-                </Card>
-              </motion.div>
-            </div>
-          </div>
-        </section>
 
         {/* Education Section */}
         <section className="py-20 px-4">
@@ -495,6 +435,69 @@ const VintagePortfolio: React.FC = () => {
                     <p className="text-[#00ff41]/80 italic border-l-4 border-[#ff6b35] pl-3">{edu.note}</p>
                   </Card>
                 </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+
+        {/* Projects Section */}
+        <section className="py-20 px-4">
+          <div className="max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="mb-8"
+            >
+              <div className="flex items-center gap-2 text-2xl mb-2">
+                <Cpu className="w-8 h-8 text-[#ff6b35]" />
+                <span className="text-[#ff6b35]">&gt;</span>
+                <span className="text-[#ffbe0b]">cd /projects && ls</span>
+              </div>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {projects.map((project, index) => (
+                <motion.a
+                  key={project.name}
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15 }}
+                  whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0,255,65,0.5)" }}
+                  className="block"
+                >
+                  <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all cursor-pointer pointer-events-auto`}>
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      className="text-[#ff6b35] text-sm mb-2"
+                    >
+                      <TypingText text={`[PROJECT_${index + 1}]`} delay={index * 500} speed={50} />
+                    </motion.div>
+                    <motion.h3
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      className="text-xl font-bold text-[#ffbe0b] mb-3"
+                    >
+                      <TypingText text={project.name} delay={index * 500 + 300} speed={40} />
+                    </motion.h3>
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      className="text-[#00ff41]/80"
+                    >
+                      <TypingText text={`> ${project.description}`} delay={index * 500 + 600} speed={25} />
+                    </motion.p>
+                  </Card>
+                </motion.a>
               ))}
             </div>
           </div>
