@@ -7,6 +7,7 @@ import ThermodynamicGrid from '@/components/ui/interactive-thermodynamic-grid';
 import DitheringShader from '@/components/ui/dithering-shader';
 import MatrixCowsayAnimation from '@/components/matrix-cowsay-animation';
 import { RevealWaveImage } from '@/components/ui/reveal-wave-image';
+import TypingText from '@/components/typing-text';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Briefcase, GraduationCap, Award, Code, MapPin, Calendar, Cpu } from 'lucide-react';
@@ -42,14 +43,15 @@ const VintagePortfolio: React.FC = () => {
   ];
 
   const languages = [
-    { name: 'Python', level: 100 },
-    { name: 'Shell (Bash/ZSH)', level: 80 },
+    { name: 'Python', level: 95 },
+    { name: 'Shell (Bash/ZSH)', level: 75 },
+    { name: 'YAML', level: 80 },
   ];
 
   const projects = [
-    { name: 'Context Search', description: 'Intelligent Search service based on NER, using data indexed in Elastic Search.' },
-    { name: 'OCR Notes Companion', description: 'iOS app for taking quick notes using the camera and saving them as PDF with a tensorflow OCR,' },
-    { name: 'Galaxy-Classification', description: 'deep learning nn to classify the images of galaxies into different types' },
+    { name: 'Context Search', description: 'Intelligent Search service based on NER, using data indexed in Elastic Search.', link: 'https://github.com/Lord-V15/Context-Search' },
+    { name: 'OCR Notes Companion', description: 'iOS app for taking quick notes using the camera and saving them as PDF with a tensorflow OCR,', link: 'https://github.com/Lord-V15/OCR-Companion-v2' },
+    { name: 'Galaxy-Classification', description: 'deep learning nn to classify the images of galaxies into different types', link: 'https://github.com/Lord-V15/Galaxy-Classification' },
   ];
 
   const workExperience = [
@@ -59,6 +61,7 @@ const VintagePortfolio: React.FC = () => {
       period: '12/2025 - Present',
       location: 'Canberra, Australia (Remote)',
       description: 'The computational backbone for autonomous materials science — from search to synthesis.',
+      link: 'https://www.novyte.in',
       achievements: [
         'Leading development for Q, the AI-based material synthesis platform for manufacturing R&D',
         'Architecting the platform\'s system design choices to ensure a scalable future',
@@ -70,6 +73,7 @@ const VintagePortfolio: React.FC = () => {
       company: 'Fractal Analytics (Client: Mondelez International)',
       period: '06/2024 - 06/2025',
       location: 'Bangalore, India',
+      link: 'https://fractal.ai',
       achievements: [
         'Leading MLOps for handling 3 client (Mondelez) projects',
         'Tech Stack: GCP + Databricks + BigQuery + Spark + Python + Sci-Kit Learn + GitHub Actions',
@@ -82,6 +86,7 @@ const VintagePortfolio: React.FC = () => {
       period: '11/2021 - 02/2024',
       location: 'Singapore',
       description: 'Accelerating research in computational material science in a seamless, scalable way using A.I.',
+      link: 'https://polymerize.io',
       achievements: [
         'Converting AI research into production features and ensuring infrastructure scalability',
         'Reduced 50% of the team efforts by automating CI/CD & Mongo workflows',
@@ -193,9 +198,8 @@ const VintagePortfolio: React.FC = () => {
                 <div className="text-[#ff6b35]">[LANGUAGES]:</div>
                 {languages.map((lang) => (
                   <div key={lang.name} className="space-y-2">
-                    <div className="flex justify-between text-sm">
+                    <div className="text-sm">
                       <span className="text-[#00ff41]">{lang.name}</span>
-                      <span className="text-[#ffbe0b]">[{lang.level}%]</span>
                     </div>
                     <div className="h-4 bg-black border-2 border-[#00ff41] relative overflow-hidden">
                       <motion.div
@@ -232,20 +236,45 @@ const VintagePortfolio: React.FC = () => {
 
             <div className="grid md:grid-cols-3 gap-6">
               {projects.map((project, index) => (
-                <motion.div
+                <motion.a
                   key={project.name}
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.15 }}
                   whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0,255,65,0.5)" }}
+                  className="block"
                 >
-                  <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all`}>
-                    <div className="text-[#ff6b35] text-sm mb-2">[PROJECT_{index + 1}]</div>
-                    <h3 className="text-xl font-bold text-[#ffbe0b] mb-3">{project.name}</h3>
-                    <p className="text-[#00ff41]/80">&gt; {project.description}</p>
+                  <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] p-6 h-full shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all cursor-pointer pointer-events-auto`}>
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      className="text-[#ff6b35] text-sm mb-2"
+                    >
+                      <TypingText text={`[PROJECT_${index + 1}]`} delay={index * 500} speed={50} />
+                    </motion.div>
+                    <motion.h3
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      className="text-xl font-bold text-[#ffbe0b] mb-3"
+                    >
+                      <TypingText text={project.name} delay={index * 500 + 300} speed={40} />
+                    </motion.h3>
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      className="text-[#00ff41]/80"
+                    >
+                      <TypingText text={`> ${project.description}`} delay={index * 500 + 600} speed={25} />
+                    </motion.p>
                   </Card>
-                </motion.div>
+                </motion.a>
               ))}
             </div>
           </div>
@@ -279,41 +308,91 @@ const VintagePortfolio: React.FC = () => {
                   <Card className={`${cardOpacity} backdrop-blur-sm border-4 border-[#00ff41] pointer-events-none p-8 shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_40px_rgba(0,255,65,0.4)] transition-all`}>
                     <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
                       <div>
-                        <div className="text-[#ff6b35] text-sm mb-2">[POSITION_{workExperience.length - index}]</div>
-                        <h3 className="text-2xl font-bold text-[#ffbe0b] mb-2">{job.title}</h3>
-                        <p className="text-xl text-[#00ff41]">{job.company}</p>
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          viewport={{ once: true }}
+                          className="text-[#ff6b35] text-sm mb-2"
+                        >
+                          <TypingText text={`[POSITION_${workExperience.length - index}]`} delay={0} speed={50} />
+                        </motion.div>
+                        <motion.h3
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          viewport={{ once: true }}
+                          className="text-2xl font-bold text-[#ffbe0b] mb-2"
+                        >
+                          <TypingText text={job.title} delay={500} speed={40} />
+                        </motion.h3>
+                        <motion.p
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          viewport={{ once: true }}
+                          className="text-xl text-[#00ff41]"
+                        >
+                          <a
+                            href={job.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-[#ffbe0b] transition-colors pointer-events-auto underline decoration-[#00ff41]/30 hover:decoration-[#ffbe0b]"
+                          >
+                            <TypingText text={job.company} delay={1000} speed={40} />
+                          </a>
+                        </motion.p>
                       </div>
                       <div className="text-[#00ff41]/80 text-sm md:text-right mt-2 md:mt-0">
-                        <div className="flex items-center gap-2 mb-1">
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          viewport={{ once: true }}
+                          className="flex items-center gap-2 mb-1"
+                        >
                           <Calendar className="w-4 h-4 text-[#ff6b35]" />
-                          [{job.period}]
-                        </div>
-                        <div className="flex items-center gap-2">
+                          <TypingText text={`[${job.period}]`} delay={1500} speed={35} />
+                        </motion.div>
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          viewport={{ once: true }}
+                          className="flex items-center gap-2"
+                        >
                           <MapPin className="w-4 h-4 text-[#ff6b35]" />
-                          [{job.location}]
-                        </div>
+                          <TypingText text={`[${job.location}]`} delay={2000} speed={35} />
+                        </motion.div>
                       </div>
                     </div>
 
                     {job.description && (
                       <div className="text-[#00ff41]/70 mb-4 italic border-l-4 border-[#ff6b35] pl-4">
-                        {job.description}
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          viewport={{ once: true }}
+                        >
+                          <TypingText text={job.description} delay={2500} speed={25} />
+                        </motion.div>
                       </div>
                     )}
 
-                    <div className="text-[#ff6b35] text-sm mb-2">[ACHIEVEMENTS]:</div>
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      className="text-[#ff6b35] text-sm mb-2"
+                    >
+                      <TypingText text="[ACHIEVEMENTS]:" delay={3500} speed={50} />
+                    </motion.div>
                     <ul className="space-y-2">
                       {job.achievements.map((achievement, i) => (
                         <motion.li
                           key={i}
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
                           viewport={{ once: true }}
-                          transition={{ delay: 0.1 * i }}
                           className="text-[#00ff41]/80 flex items-start"
                         >
                           <span className="text-[#ff6b35] mr-2 mt-1">▸</span>
-                          {achievement}
+                          <TypingText text={achievement} delay={4000 + (i * 1000)} speed={20} />
                         </motion.li>
                       ))}
                     </ul>

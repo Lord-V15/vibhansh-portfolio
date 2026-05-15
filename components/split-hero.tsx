@@ -60,7 +60,7 @@ export default function SplitHero({ gridMode, onToggle }: SplitHeroProps) {
                   VIBHANSH GUPTA
                 </h1>
                 <div className="text-[#ff6b35] text-xl mb-4">
-                  [MLOps_Engineer] [Product_Lead] [Python_Enthusiast]
+                  [Team_Lead] [Product_Engineer] [Open_Source_Contributor]
                 </div>
               </div>
 
